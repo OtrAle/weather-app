@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <script src="https://kit.fontawesome.com/fa4c6fd86d.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  
+  <body>
+      <div class="app">
+        <div class="form-container">
+          <form id="search-form">
+            <i id="search-icon" class="fas fa-search"></i>
+            <input type="search" id="text-input"  placeholder="Search a city" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="70"/>
+          </form>
+          <form id="current-location">
+            <button id="current-location-button"><i class="fa-solid fa-location-dot"></i> </button>
+          </form>
+        </div>
+
+        <main>
+          <h2 id="city">Guadalajara</h2>
+          <h3><span id="day"> Monday </span> | <span id="hour"> 12</span>:<span id="minutes">00</span> <span id="am-pm"> am </span></h3>
+          <h1>
+            <span id="temperature">24</span><a class="celcius sup">°C</sup><a class="divisor sup"> | </a><a class="farenheit sup">°F</a>
+          </h1>
+          <hr />
+          <h4> <span id="description">Sunny</span> <i class="fas fa-sun"></i></h4>
+          <p>
+            <i class="fas fa-wind"></i> <span class="bold"> Wind:</span> <span id="wind">4.7</span> mph
+            <br />
+            <i class="fas fa-water"></i>
+            <span class="bold"> Humidity:</span> <span id="humidity">62</span>%
+          </p>
+        </main>
+
+      <div class="container">
+        <div class="item firstItem">
+          <span class="bold">Tue</span><br />
+          <i class="fas fa-cloud"></i><br />
+          14°
+        </div>
+
+        <div class="item">
+          <span class="bold">Wed </span><br />
+          <i class="fas fa-cloud-sun"></i> <br />
+          20°
+        </div>
+
+        <div class="item">
+          <span class="bold">Thu</span><br />
+          <i class="fas fa-sun"></i> <br />
+          20°
+        </div>
+
+        <div class="item itemFive">
+          <span class="bold">Fri</span><br />
+          <i class="fas fa-cloud-showers-heavy"></i>
+          <br />
+          20°
+        </div>
+
+        <div class="item lastItem">
+          <span class="bold">Sat</span><br />
+          <i class="fas fa-cloud-sun"></i> <br />
+          20°
+        </div>
+      </div>
+    </div>
+    <p class="footer">
+      <a href="https://github.com/OtrAle/weather-app" target="_blank">Open-Source</a>  by: <a class="me" href="https://www.linkedin.com/in/alelauhm93/" target="_blank"> Otra Ale </a>
+    </p>
+    <script src="src/index.js"></script>
+  </body>
+</html>   
