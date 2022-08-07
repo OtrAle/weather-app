@@ -1,6 +1,6 @@
 let timezone;
 let timezoneMinutes;
-
+let cTemperature;
 
 function cityDate(timezone, timezoneMinutes) {
   let date = new Date();
@@ -39,7 +39,8 @@ function errorMessage() {
 
   function showWeather(response) {
     document.querySelector("#city").innerHTML = response.data.name;
-    document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
+    cTemperature= Math.round(response.data.main.temp);
+    document.querySelector("#temperature").innerHTML = cTemperature;
     document.querySelector("#description").innerHTML = response.data.weather[0].description;
     document.querySelector("#wind").innerHTML = response.data.wind.speed;
     document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -53,7 +54,6 @@ function errorMessage() {
     navigator.geolocation.getCurrentPosition(getPosition);
   }
 
-
   function getPosition(position) {
     let apiKey = "07804847d3eee0d453b79a2c32f2067e";
     let units = "metric";
@@ -62,7 +62,8 @@ function errorMessage() {
   }
   
   function showCurrentWeather(response) {
-    document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp); 
+    cTemperature= Math.round(response.data.main.temp);
+    document.querySelector("#temperature").innerHTML = cTemperature;
     document.querySelector("#description").innerHTML = response.data.weather[0].description;
     document.querySelector("#city").innerHTML = response.data.name;
     document.querySelector("#wind").innerHTML = response.data.wind.speed;
@@ -88,3 +89,28 @@ function errorMessage() {
 setInterval(function()
 {cityDate(timezone, timezoneMinutes);
 }, 1000);
+
+function convertF(event) {
+  event.preventDefault();
+  let htmlFTemp = document.querySelector("#temperature");
+  htmlCelcius.classList.remove("active")
+  htmlFahrenheit.classList.add("active");
+
+  let fTemperature = Math.round((cTemperature * 9)/ 5 + 32);
+  htmlFTemp.innerHTML = fTemperature;
+}
+
+function convertC(event) {
+  event.preventDefault();
+  let htmlFTemp = document.querySelector("#temperature");
+  htmlFahrenheit.classList.remove("active");
+  htmlCelcius.classList.add("active")
+
+  htmlFTemp.innerHTML = cTemperature;
+}
+
+let htmlCelcius = document.querySelector(".celcius");
+let htmlFahrenheit = document.querySelector(".farenheit");
+
+htmlCelcius.addEventListener("click", convertC);
+htmlFahrenheit.addEventListener("click", convertF);

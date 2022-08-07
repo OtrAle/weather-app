@@ -112,20 +112,16 @@
     line-height: 100px;
   }
 
-  .farenheit {
-    color: rgba(0, 0, 0, 0.25);
-    transition: all 300ms ease-in-out;
-  }
-
+  .farenheit,
   .celcius {
-    color: white;
+    color: rgba(0, 0, 0, 0.25);
     transition: all 300ms ease-in-out;
   }
 
   .farenheit:hover,
   .celcius:hover {
     cursor: pointer;
-    color: white;
+    color: rgba(225, 225, 225, 0.9);
   }
 
   h2 {
@@ -236,4 +232,8 @@
  
   .fas {
     color: rgba(255, 255, 255, 0.6);
+  }
+
+  .active {
+    color: white;
   }
