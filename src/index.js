@@ -1,3 +1,7 @@
+let timezone;
+let timezoneMinutes;
+
+
 function cityDate(timezone, timezoneMinutes) {
   let date = new Date();
   date.setFullYear(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
@@ -11,7 +15,7 @@ function cityDate(timezone, timezoneMinutes) {
   let day = days[date.getDay()];
   let amPm= "am";
   hour[0-11] < 10 ? amPm = "am":  amPm = "pm";
-  return `${day} | ${hour}:${minutes} ${amPm}`;
+  document.querySelector("#date").innerHTML = `${day} | ${hour}:${minutes} ${amPm}`;
 }
 
 //search engine
@@ -30,7 +34,7 @@ function errorMessage() {
     let units = "metric";
     let apiKey = "07804847d3eee0d453b79a2c32f2067e";
     let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`
-    axios.get(apiUrl).then(showWeather);
+    axios.get(apiUrl).then(showWeather).catch(errorMessage);
   }
 
   function showWeather(response) {
@@ -39,9 +43,8 @@ function errorMessage() {
     document.querySelector("#description").innerHTML = response.data.weather[0].description;
     document.querySelector("#wind").innerHTML = response.data.wind.speed;
     document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-    let timezone = response.data.timezone/3600;
-    let timezoneMinutes = (response.data.timezone%3600)/60; 
-    document.querySelector("#date").innerHTML = cityDate(timezone,timezoneMinutes);
+    timezone = response.data.timezone/3600;
+    timezoneMinutes = (response.data.timezone%3600)/60; 
     console.log(response.data);
   }
 
@@ -49,6 +52,7 @@ function errorMessage() {
   function sendPostion() {
     navigator.geolocation.getCurrentPosition(getPosition);
   }
+
 
   function getPosition(position) {
     let apiKey = "07804847d3eee0d453b79a2c32f2067e";
@@ -63,8 +67,8 @@ function errorMessage() {
     document.querySelector("#city").innerHTML = response.data.name;
     document.querySelector("#wind").innerHTML = response.data.wind.speed;
     document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-    let timezone = response.data.timezone/3600;
-    document.querySelector("#date").innerHTML = cityDate(timezone);
+    timezone = response.data.timezone/3600;
+    timezoneMinutes = (response.data.timezone%3600)/60; 
   }
   
   //Initial weather info
@@ -80,3 +84,7 @@ function errorMessage() {
 
   let htmlForm = document.querySelector(".form-container");
   htmlForm.addEventListener("submit", search);
+
+setInterval(function()
+{cityDate(timezone, timezoneMinutes);
+}, 1000);
