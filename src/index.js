@@ -48,14 +48,8 @@ function errorMessage() {
     timezoneMinutes = (response.data.timezone%3600)/60; 
     console.log(response.data);
 
-    
-    
     let mainIcon = document.querySelector("#mainIcon");
-    mainIcon.src = `weatherIcons/${response.data.weather[0].icon}.svg`;
-
-  
-
-
+    mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
   }
 
   //Current weather data
@@ -79,6 +73,9 @@ function errorMessage() {
     document.querySelector("#humidity").innerHTML = response.data.main.humidity;
     timezone = response.data.timezone/3600;
     timezoneMinutes = (response.data.timezone%3600)/60; 
+
+    let mainIcon = document.querySelector("#mainIcon");
+    mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
   }
   
   //Initial weather info
@@ -124,4 +121,3 @@ let htmlFahrenheit = document.querySelector(".farenheit");
 htmlCelcius.addEventListener("click", convertC);
 htmlFahrenheit.addEventListener("click", convertF);
 
-//Change icon
