@@ -51,7 +51,7 @@ function errorMessage() {
     
     
     let mainIcon = document.querySelector("#mainIcon");
-    mainIcon.src = `/weatherIcons/${response.data.weather[0].icon}.svg`;
+    mainIcon.src = `weatherIcons/${response.data.weather[0].icon}.svg`;
 
   
 
