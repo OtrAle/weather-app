@@ -73,8 +73,6 @@
     display: inline-block;
 
   }
-
-
   
   #current-location-button {
     width: 40px;
@@ -236,4 +234,10 @@
 
   .active {
     color: white;
+  }
+
+  #mainIcon{
+    height: 30px;
+    color: white;
+ 
   }
