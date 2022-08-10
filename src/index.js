@@ -1,7 +1,11 @@
 let timezone;
 let timezoneMinutes;
 let cTemperature;
+let apiKey = "07804847d3eee0d453b79a2c32f2067e";
+let units = "metric";
 
+
+//set hour and day
 function cityDate(timezone, timezoneMinutes) {
   let date = new Date();
   date.setFullYear(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
@@ -20,77 +24,78 @@ function cityDate(timezone, timezoneMinutes) {
 
 //search engine
 function errorMessage() {
-    alert(`We could't find ${document.querySelector("#text-input").value}, try another city.`);
-  } 
+  alert(`We could't find ${document.querySelector("#text-input").value}, try another city.`);
+} 
 
-  //Searched city weather data
-  function search(event) {
-    event.preventDefault();
-    let city = document.querySelector("#text-input").value;
-    defaultInfo(city);
-  }
+//Searched city weather data
+function search(event) {
+  event.preventDefault();
+  let city = document.querySelector("#text-input").value;
+  defaultInfo(city);
+}
 
-  function defaultInfo(city) {
-    let units = "metric";
-    let apiKey = "07804847d3eee0d453b79a2c32f2067e";
-    let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`
-    axios.get(apiUrl).then(showWeather).catch(errorMessage);
-  }
+function defaultInfo(city) {
+  let units = "metric";
+  let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`
+  axios.get(apiUrl).then(showWeather).catch(errorMessage);
+}
 
-  function showWeather(response) {
-    document.querySelector("#city").innerHTML = response.data.name;
-    cTemperature= Math.round(response.data.main.temp);
-    document.querySelector("#temperature").innerHTML = cTemperature;
-    document.querySelector("#description").innerHTML = response.data.weather[0].description;
-    document.querySelector("#wind").innerHTML = response.data.wind.speed;
-    document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-    timezone = response.data.timezone/3600;
-    timezoneMinutes = (response.data.timezone%3600)/60; 
-    console.log(response.data);
+function showWeather(response) {
+  document.querySelector("#city").innerHTML = response.data.name;
+  cTemperature= Math.round(response.data.main.temp);
+  document.querySelector("#temperature").innerHTML = cTemperature;
+  document.querySelector("#description").innerHTML = response.data.weather[0].description;
+  document.querySelector("#wind").innerHTML = response.data.wind.speed;
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  timezone = response.data.timezone/3600;
+  timezoneMinutes = (response.data.timezone%3600)/60; 
+  console.log(response.data);
 
-    let mainIcon = document.querySelector("#mainIcon");
-    mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
-  }
+  let mainIcon = document.querySelector("#mainIcon");
+  mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
 
-  //Current weather data
-  function sendPostion() {
-    navigator.geolocation.getCurrentPosition(getPosition);
-  }
+  getForecast(response.data.coord);
 
-  function getPosition(position) {
-    let apiKey = "07804847d3eee0d453b79a2c32f2067e";
-    let units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(showCurrentWeather);
-  }
+
+}
+
+//Current weather data
+function sendPostion() {
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+
+function getPosition(position) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showCurrentWeather);
+}
   
-  function showCurrentWeather(response) {
-    cTemperature= Math.round(response.data.main.temp);
-    document.querySelector("#temperature").innerHTML = cTemperature;
-    document.querySelector("#description").innerHTML = response.data.weather[0].description;
-    document.querySelector("#city").innerHTML = response.data.name;
-    document.querySelector("#wind").innerHTML = response.data.wind.speed;
-    document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-    timezone = response.data.timezone/3600;
-    timezoneMinutes = (response.data.timezone%3600)/60; 
+function showCurrentWeather(response) {
+  cTemperature= Math.round(response.data.main.temp);
+  document.querySelector("#temperature").innerHTML = cTemperature;
+  document.querySelector("#description").innerHTML = response.data.weather[0].description;
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#wind").innerHTML = response.data.wind.speed;
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  timezone = response.data.timezone/3600;
+  timezoneMinutes = (response.data.timezone%3600)/60; 
 
-    let mainIcon = document.querySelector("#mainIcon");
-    mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
-  }
+  let mainIcon = document.querySelector("#mainIcon");
+  mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
+}
   
-  //Initial weather info
-  defaultInfo("Guadalajara");
+//Initial weather info
+defaultInfo("Guadalajara");
 
-  //Get weather on current location
-  let htmlCurrent = document.querySelector("#current-location");
-  htmlCurrent.addEventListener("click", sendPostion);
+//Get weather on current location
+let htmlCurrent = document.querySelector("#current-location");
+htmlCurrent.addEventListener("click", sendPostion);
 
-  //Get weather from a searched city
-  let htmlSearchIcon = document.querySelector("#search-icon")
-  htmlSearchIcon.addEventListener("click", search);
+//Get weather from a searched city
+let htmlSearchIcon = document.querySelector("#search-icon")
+htmlSearchIcon.addEventListener("click", search);
 
-  let htmlForm = document.querySelector(".form-container");
-  htmlForm.addEventListener("submit", search);
+let htmlForm = document.querySelector(".form-container");
+htmlForm.addEventListener("submit", search);
 
 setInterval(function()
 {cityDate(timezone, timezoneMinutes);
@@ -104,6 +109,11 @@ function convertF(event) {
 
   let fTemperature = Math.round((cTemperature * 9)/ 5 + 32);
   htmlFTemp.innerHTML = fTemperature;
+
+
+
+
+
 }
 
 function convertC(event) {
@@ -121,3 +131,33 @@ let htmlFahrenheit = document.querySelector(".farenheit");
 htmlCelcius.addEventListener("click", convertC);
 htmlFahrenheit.addEventListener("click", convertF);
 
+// forecast
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=hourly,current,minutely&appid=${apiKey}&units=${units}`
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
+
+function displayForecast(response) {
+  console.log(response);
+
+  let dailyForecast = response.data.daily;
+  console.log(dailyForecast);
+  
+  let tempForecast = document.getElementsByClassName("daily-temp");
+  let iconForecast = document.getElementsByClassName("forecast-icon");
+  let dayForecast =  document.getElementsByClassName("week-day");
+
+  let avDays = ["Sun", "Mon", "Tue", "Wed", "Thu","Fri", "Sat"];
+
+    for (let i = 0; i < 5; i++) {
+    date = new Date(dailyWeather[i].dt*1000);
+    dayForecast[i].innerHTML = avDays[date.getDay()];
+     tempForecast[i].innerHTML = Math.round(dailyForecast[i].temp.day);
+    iconForecast[i].src = `src/weatherIcons/${response.data.daily[i].weather[0].icon}.svg`;
+    iconForecast[i].alt = response.data.daily[i].weather[0].description;
+
+  }
+}
