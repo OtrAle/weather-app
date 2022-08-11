@@ -55,8 +55,6 @@ function showWeather(response) {
   mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
 
   getForecast(response.data.coord);
-
-
 }
 
 //Current weather data
@@ -81,6 +79,9 @@ function showCurrentWeather(response) {
 
   let mainIcon = document.querySelector("#mainIcon");
   mainIcon.src = `src/weatherIcons/${response.data.weather[0].icon}.svg`;
+  getForecast(response.data.coord);
+  let searchBar = document.querySelector("#text-input");
+  searchBar.value = "";
 }
   
 //Initial weather info
@@ -93,6 +94,7 @@ htmlCurrent.addEventListener("click", sendPostion);
 //Get weather from a searched city
 let htmlSearchIcon = document.querySelector("#search-icon")
 htmlSearchIcon.addEventListener("click", search);
+
 
 let htmlForm = document.querySelector(".form-container");
 htmlForm.addEventListener("submit", search);
@@ -109,11 +111,6 @@ function convertF(event) {
 
   let fTemperature = Math.round((cTemperature * 9)/ 5 + 32);
   htmlFTemp.innerHTML = fTemperature;
-
-
-
-
-
 }
 
 function convertC(event) {
@@ -150,14 +147,13 @@ function displayForecast(response) {
   let iconForecast = document.getElementsByClassName("forecast-icon");
   let dayForecast =  document.getElementsByClassName("week-day");
 
-  let avDays = ["Sun", "Mon", "Tue", "Wed", "Thu","Fri", "Sat"];
+  let avDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-    for (let i = 0; i < 5; i++) {
-    date = new Date(dailyWeather[i].dt*1000);
-    dayForecast[i].innerHTML = avDays[date.getDay()];
-     tempForecast[i].innerHTML = Math.round(dailyForecast[i].temp.day);
-    iconForecast[i].src = `src/weatherIcons/${response.data.daily[i].weather[0].icon}.svg`;
-    iconForecast[i].alt = response.data.daily[i].weather[0].description;
-
-  }
+    for (let i = 1; i <= 4; i++) {
+    date = new Date(dailyForecast[i].dt*1000);
+    dayForecast[i-1].innerHTML = avDays[date.getDay()];
+    tempForecast[i-1].innerHTML = Math.round(dailyForecast[i].temp.day);
+    iconForecast[i-1].src = `src/weatherIcons/${response.data.daily[i].weather[0].icon}.svg`;
+    iconForecast[i-1].alt = response.data.daily[i].weather[0].description;
+}
 }
