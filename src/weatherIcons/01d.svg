@@ -3,29 +3,78 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.15;fill:#FFFFFF;enable-background:new    ;}
-	.st1{opacity:0.35;fill:#FFFFFF;enable-background:new    ;}
-	.st2{opacity:0.8;fill:#FFFFFF;enable-background:new    ;}
-	.st3{opacity:0.3;fill:#EDB55D;enable-background:new    ;
-}
+	.lightOutside{
+		opacity:0.15;
+		fill:#FFFFFF;
+		enable-background:new;
+		animation: pulse1 3s alternate infinite;
+	}
+	@keyframes pulse1 {
+  		0% {
+    		opacity:0.10;
+			fill:#FFFFFF;
 
+  		}
+ 		100% {
+    		opacity:0.15;
+			fill:#FFFFFF;
+		}
+	}
 
+	.lightInside{
+		opacity:0.35;
+		fill:#FFFFFF;
+		enable-background:new;
+		animation: pulse2 3s alternate infinite;
+	}
+	@keyframes pulse2 {
+  		0% {
+    		opacity:0.15;
+			fill:#FFFFFF;
+
+  		}
+ 		100% {
+    		opacity:0.20;
+			fill:#FFFFFF;
+		}
+	}
+
+	.centerBase{
+		opacity:0.8;
+		fill:#FFFFFF;
+		enable-background:new;
+	}
+	
+	.center
+		{opacity:0.3;
+		fill:#EDB55D;
+		enable-background:new;
+		animation: pulse3 3s alternate infinite;
+	}
+	@keyframes pulse3 {
+  		0% {
+    		opacity:0.3;
+			fill:#EDB55D;
+  		}
+ 		100% {
+    		opacity:0.5;
+			fill:#EDB55D;
+		}
+	}
 </style>
-<g id="lightO">
-	<path class="st0" d="M383.9,278.5c-21,49.1-59.8,87.1-109.4,107c-23.9,9.6-48.9,14.5-74.4,14.5c-39.5,0-77.8-11.6-110.8-33.5
+
+
+<g id="sun">
+	<path class="lightOutside" d="M383.9,278.5c-21,49.1-59.8,87.1-109.4,107c-23.9,9.6-48.9,14.5-74.4,14.5c-39.5,0-77.8-11.6-110.8-33.5
 		c-33.8-22.4-59.6-54.2-74.8-92c-19.9-49.6-19.3-103.9,1.6-153c21-49.1,59.8-87.1,109.3-107C149.4,4.9,174.4,0,199.9,0
 		c39.5,0,77.8,11.6,110.8,33.5c33.8,22.4,59.6,54.2,74.8,91.9C405.4,175,404.8,229.4,383.9,278.5z"/>
-</g>
-<g id="lighI">
-	<path class="st1" d="M344.2,261.5c-16.4,38.5-46.9,68.3-85.8,83.9c-18.7,7.5-38.4,11.4-58.4,11.4c-31,0-61-9.1-86.9-26.3
+	<path class="lightInside" d="M344.2,261.5c-16.4,38.5-46.9,68.3-85.8,83.9c-18.7,7.5-38.4,11.4-58.4,11.4c-31,0-61-9.1-86.9-26.3
 		C86.7,313,66.4,288,54.5,258.4c-15.6-38.9-15.1-81.5,1.3-120c16.4-38.5,46.9-68.3,85.8-83.9c18.7-7.5,38.4-11.4,58.4-11.4
 		c31,0,61,9.1,86.9,26.3c26.5,17.6,46.8,42.5,58.7,72.1C361.1,180.4,360.7,223,344.2,261.5z"/>
-</g>
-<g id="sun">
-	<path class="st2" d="M256.7,114.7c-16.9-11.2-36.5-17.2-56.8-17.2c-13.1,0-25.9,2.5-38.1,7.4c-25.4,10.2-45.3,29.7-56,54.8
+	<path class="centerBase" d="M256.7,114.7c-16.9-11.2-36.5-17.2-56.8-17.2c-13.1,0-25.9,2.5-38.1,7.4c-25.4,10.2-45.3,29.7-56,54.8
 		c-10.7,25.2-11,53-0.8,78.4c7.8,19.4,21,35.7,38.3,47.1c16.9,11.2,36.6,17.1,56.8,17.1c13.1,0,25.9-2.5,38.1-7.4
 		c25.4-10.2,45.3-29.7,56-54.9c10.7-25.2,11-53,0.9-78.4C287.3,142.5,274.1,126.2,256.7,114.7z"/>
-	<path class="st3" d="M256.7,114.7c-16.9-11.2-36.5-17.2-56.8-17.2c-13.1,0-25.9,2.5-38.1,7.4c-25.4,10.2-45.3,29.7-56,54.8
+	<path class="center" d="M256.7,114.7c-16.9-11.2-36.5-17.2-56.8-17.2c-13.1,0-25.9,2.5-38.1,7.4c-25.4,10.2-45.3,29.7-56,54.8
 		c-10.7,25.2-11,53-0.8,78.4c7.8,19.4,21,35.7,38.3,47.1c16.9,11.2,36.6,17.1,56.8,17.1c13.1,0,25.9-2.5,38.1-7.4
 		c25.4-10.2,45.3-29.7,56-54.9c10.7-25.2,11-53,0.9-78.4C287.3,142.5,274.1,126.2,256.7,114.7z"/>
 </g>
