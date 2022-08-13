@@ -12,7 +12,8 @@
 	@keyframes mist1 {
   		0% {
     		transform: translate(0);
-  		}
+			scale(0.9)
+		}
 
 		25%{
 			opacity:0.2;
@@ -37,6 +38,7 @@
 	}
 	@keyframes mist2 {
   		0% {
+			scale(0.9)
     		transform: translate(0);
   		}
 

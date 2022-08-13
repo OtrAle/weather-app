@@ -40,6 +40,20 @@
 		}
 	}
 
+	#moon{
+		transform-origin: center;
+		transform-box: fill-box;
+		animation: rotate 40s alternate infinite;
+	}
+	@keyframes rotate {
+  		0% {
+			transform:rotate(0);
+  		}
+ 		100% {
+			transform:rotate(360deg);
+		}
+	}
+
 	.moonSpots{
 		fill:#A2BFC9;
 		opacity:0.4;
@@ -55,6 +69,7 @@
 			fill:#A2BFC9;
 		}
 	}
+
 	
 	.cloud{
 		opacity:0.7;
