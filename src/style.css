@@ -8,13 +8,12 @@
       #b8c6db 0%, 
       #f5f7fa 74%);    
       background-attachment: fixed;
-      grid-template-columns: 480px;
   }
     
   .app {
     margin: 0 auto;
     max-width: 500px;
-    min-width: 380px;
+    min-width: 350px;
     margin-top: 40px;
     background-image: url("../svg/default.svg");
     background-size: cover;
