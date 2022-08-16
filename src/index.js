@@ -4,7 +4,6 @@ let cTemperature;
 let apiKey = "07804847d3eee0d453b79a2c32f2067e";
 let units = "metric";
 
-
 //set hour and day
 function cityDate(timezone, timezoneMinutes) {
   let date = new Date();
@@ -17,8 +16,8 @@ function cityDate(timezone, timezoneMinutes) {
   minutes < 10 ? minutes = `0${minutes}`: minutes = minutes;
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"];
   let day = days[date.getDay()];
-  let amPm= "am";
-  hour[0-11] < 10 ? amPm = "am":  amPm = "pm";
+  
+  let amPm = hour[0-11] ? 'am' : 'pm';
   document.querySelector("#date").innerHTML = `${day} | ${hour}:${minutes} ${amPm}`;
 }
 
@@ -143,16 +142,20 @@ function displayForecast(response) {
   let dailyForecast = response.data.daily;
   console.log(dailyForecast);
   
-  let tempForecast = document.getElementsByClassName("daily-temp");
+  let maxTempForecast = document.getElementsByClassName("max-temp");
+  let minTempForecast = document.getElementsByClassName("min-temp");
+
   let iconForecast = document.getElementsByClassName("forecast-icon");
   let dayForecast =  document.getElementsByClassName("week-day");
 
   let avDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     for (let i = 1; i <= 5; i++) {
-    date = new Date(dailyForecast[i].dt*1000);
+    date = new Date((dailyForecast[i].dt+timezone*3600)*1000);
     dayForecast[i-1].innerHTML = avDays[date.getDay()];
-    tempForecast[i-1].innerHTML = `${Math.round(dailyForecast[i].temp.min)}°- ${Math.round(dailyForecast[i].temp.max)}°`;
+    maxTempForecast[i-1].innerHTML = Math.round(dailyForecast[i].temp.max);
+    minTempForecast[i-1].innerHTML = Math.round(dailyForecast[i].temp.min);
+
     iconForecast[i-1].src = `src/weatherIcons/${response.data.daily[i].weather[0].icon}.svg`;
     iconForecast[i-1].alt = response.data.daily[i].weather[0].description;
 }
