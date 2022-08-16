@@ -14,7 +14,7 @@
   .app {
     margin: 0 auto;
     max-width: 500px;
-    min-width: 400px;
+    min-width: 380px;
     margin-top: 40px;
     background-image: url("../svg/default.svg");
     background-size: cover;
