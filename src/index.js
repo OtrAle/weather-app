@@ -149,10 +149,10 @@ function displayForecast(response) {
 
   let avDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 5; i++) {
     date = new Date(dailyForecast[i].dt*1000);
     dayForecast[i-1].innerHTML = avDays[date.getDay()];
-    tempForecast[i-1].innerHTML = Math.round(dailyForecast[i].temp.day);
+    tempForecast[i-1].innerHTML = `${Math.round(dailyForecast[i].temp.min)}°- ${Math.round(dailyForecast[i].temp.max)}°`;
     iconForecast[i-1].src = `src/weatherIcons/${response.data.daily[i].weather[0].icon}.svg`;
     iconForecast[i-1].alt = response.data.daily[i].weather[0].description;
 }
