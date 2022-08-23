@@ -4,6 +4,9 @@ let cTemperature;
 let apiKey = "07804847d3eee0d453b79a2c32f2067e";
 let units = "metric";
 
+let cArrayMin = new Array();
+let cArrayMax = new Array();
+
 //set hour and day
 function cityDate(timezone, timezoneMinutes) {
   let date = new Date();
@@ -16,8 +19,13 @@ function cityDate(timezone, timezoneMinutes) {
   minutes < 10 ? minutes = `0${minutes}`: minutes = minutes;
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"];
   let day = days[date.getDay()];
-  
-  let amPm = hour[0-11] ? 'am' : 'pm';
+
+  let amPm= "pm";
+
+  if(date.getHours()<=11){
+    amPm= "am";
+  } 
+  // let amPm = hour[0-11] ? 'am' : 'pm';
   document.querySelector("#date").innerHTML = `${day} | ${hour}:${minutes} ${amPm}`;
 }
 
@@ -154,9 +162,42 @@ function displayForecast(response) {
     date = new Date((dailyForecast[i].dt+timezone*3600)*1000);
     dayForecast[i-1].innerHTML = avDays[date.getDay()];
     maxTempForecast[i-1].innerHTML = Math.round(dailyForecast[i].temp.max);
+    cArrayMax[i-1] =  Math.round(dailyForecast[i].temp.max);
+
+
     minTempForecast[i-1].innerHTML = Math.round(dailyForecast[i].temp.min);
+    cArrayMin[i-1] =  Math.round(dailyForecast[i].temp.min);
+
 
     iconForecast[i-1].src = `src/weatherIcons/${response.data.daily[i].weather[0].icon}.svg`;
     iconForecast[i-1].alt = response.data.daily[i].weather[0].description;
+  }
 }
+
+function convertFForecast(event){
+  event.preventDefault();
+  let maxTempForecast = document.getElementsByClassName("max-temp");
+  let minTempForecast = document.getElementsByClassName("min-temp");
+
+  for (let i = 0; i <= 4; i++) {
+    maxTempForecast[i].innerHTML = Math.round((cArrayMax[i] * 9)/ 5 + 32);
+    minTempForecast[i].innerHTML = Math.round((cArrayMin[i] * 9)/ 5 + 32);
+  }
 }
+
+
+function convertCForecast(event){
+  event.preventDefault();
+  let maxTempForecast = document.getElementsByClassName("max-temp");
+  let minTempForecast = document.getElementsByClassName("min-temp");
+
+  for (let i = 0; i <= 4; i++) {
+    maxTempForecast[i].innerHTML = cArrayMax[i];
+    minTempForecast[i].innerHTML = cArrayMin[i];
+  }
+
+}
+
+
+htmlCelcius.addEventListener("click", convertCForecast);
+htmlFahrenheit.addEventListener("click", convertFForecast);
