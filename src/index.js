@@ -20,13 +20,32 @@ function cityDate(timezone, timezoneMinutes) {
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"];
   let day = days[date.getDay()];
 
+ 
+  let background = document.querySelector('.app');
+
+  if(date.getHours()>=16){
+    background.style.backgroundImage = 'url("svg/default.svg")';
+    if (date.getHours()>=20){
+    background.style.backgroundImage = 'url("svg/night.svg")';  
+    }
+  } else if(date.getHours()<=16){
+    background.style.backgroundImage = 'url("svg/day.svg")';  
+    if (date.getHours()<=4){
+      background.style.backgroundImage = 'url("svg/night.svg")';  
+    }
+  }
+
+
+
   let amPm= "pm";
 
   if(date.getHours()<=11){
     amPm= "am";
   } 
-  // let amPm = hour[0-11] ? 'am' : 'pm';
+
   document.querySelector("#date").innerHTML = `${day} | ${hour}:${minutes} ${amPm}`;
+
+
 }
 
 //search engine
