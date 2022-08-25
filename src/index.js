@@ -20,7 +20,6 @@ function cityDate(timezone, timezoneMinutes) {
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"];
   let day = days[date.getDay()];
 
- 
   let background = document.querySelector('.app');
 
   if(date.getHours()>=16){
@@ -35,8 +34,6 @@ function cityDate(timezone, timezoneMinutes) {
     }
   }
 
-
-
   let amPm= "pm";
 
   if(date.getHours()<=11){
@@ -44,8 +41,6 @@ function cityDate(timezone, timezoneMinutes) {
   } 
 
   document.querySelector("#date").innerHTML = `${day} | ${hour}:${minutes} ${amPm}`;
-
-
 }
 
 //search engine
@@ -216,7 +211,5 @@ function convertCForecast(event){
   }
 
 }
-
-
 htmlCelcius.addEventListener("click", convertCForecast);
 htmlFahrenheit.addEventListener("click", convertFForecast);

@@ -267,6 +267,11 @@
     width: 45px;
   }
 
-  .daily-temp{
-    font-size: 19px;
+  .max-temp{
+    font-weight: 400;
+
+  }
+
+  .degree-symbol{
+    font-size: 17px;
   }
