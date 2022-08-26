@@ -53,6 +53,8 @@ function search(event) {
   event.preventDefault();
   let city = document.querySelector("#text-input").value;
   defaultInfo(city);
+  htmlCelcius.classList.add("active")
+  htmlFahrenheit.classList.remove("active");
 }
 
 function defaultInfo(city) {
@@ -81,6 +83,8 @@ function showWeather(response) {
 //Current weather data
 function sendPostion() {
   navigator.geolocation.getCurrentPosition(getPosition);
+  htmlCelcius.classList.add("active")
+  htmlFahrenheit.classList.remove("active");
 }
 
 function getPosition(position) {
