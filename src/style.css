@@ -18,7 +18,7 @@
     
   .app {
     width:50%;
-    min-width:400px;
+    min-width:380px;
     max-width:500px;
     background-image: url("../svg/default.svg");
     background-size: cover;
