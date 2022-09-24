@@ -11,7 +11,6 @@
   }
     
   .app {
-
     margin:0 auto;
     margin-top:50px;
     width:50%;
@@ -21,7 +20,7 @@
     background-size: cover;
     border-radius: 8px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(225, 225, 225, 0.8);
+    border: 1px outset rgba(225, 225, 225, 0.8);
   }
 
   .form-container{

@@ -1,3 +1,18 @@
+var imagesBg = new Array()
+	function preload() {
+		for (i = 0; i < preload.arguments.length; i++) {
+			imagesBg[i] = new Image()
+			imagesBg[i].src = preload.arguments[i]
+		}
+}
+
+preload(
+	"svg/cancel.svg",
+  "svg/day.svg",
+  "svg/default.svg",
+  "svg/night.svg"
+);
+
 let timezone;
 let timezoneMinutes;
 let cTemperature;
